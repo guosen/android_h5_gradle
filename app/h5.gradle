@@ -45,7 +45,7 @@ task updateH5 << {
     //先获取最新的h5版本号
     def h5_version=project.H5_VERSION
     //再获取最新的zip下载地址
-    def h5_packge_map_string=httpGetString(client,"http://st0.meiyaapp.com/app/${h5_version}/H5PackageMap.json");
+    def h5_packge_map_string=httpGetString(client,"＊＊＊＊＊/${h5_version}/H5PackageMap.json");
     writeTolocalH5PackgeMapFile(h5_packge_map_string,asset_h5)
 
     def h5_packge_map=slurper.parseText(h5_packge_map_string)
