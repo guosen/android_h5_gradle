@@ -1,0 +1,155 @@
+import com.squareup.okhttp.OkHttpClient
+import com.squareup.okhttp.Request
+import com.squareup.okhttp.Response
+import groovy.json.JsonSlurper
+
+import java.util.zip.ZipEntry
+import java.util.zip.ZipInputStream
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.squareup.okhttp:okhttp:2.4.0'
+    }
+}
+
+
+task updateH5 << {
+    File tmp=new File("Meiya/build/tmp/h5")
+    File asset_h5=new File("Meiya/assets/h5")
+
+    def deleteFile;
+    deleteFile={
+        File file->if(!file.exists())return
+        if(file.isFile()){
+            file.delete();
+        }else {
+            file.listFiles().each {
+                deleteFile(it)
+            }
+            file.delete()
+        }
+    }
+    deleteFile(tmp)
+    deleteFile(asset_h5)
+    asset_h5.mkdirs()
+    tmp.mkdirs()
+
+    com.squareup.okhttp.OkHttpClient client=new OkHttpClient();
+    JsonSlurper slurper = new JsonSlurper()
+
+    //先获取最新的h5版本号
+    def h5_version=project.H5_VERSION
+    //再获取最新的zip下载地址
+    def h5_packge_map_string=httpGetString(client,"http://st0.meiyaapp.com/app/${h5_version}/H5PackageMap.json");
+    writeTolocalH5PackgeMapFile(h5_packge_map_string,asset_h5)
+
+    def h5_packge_map=slurper.parseText(h5_packge_map_string)
+    //下载最新的zip包
+    h5_packge_map.H5PackageList.values().each{
+        value->httpDownload(client,value,new File(tmp,paseFileNameFromUrl(value)))
+    }
+
+    tmp.listFiles().each {
+        zip->
+            if(zip.getName().endsWith("zip")){
+                unZipit(zip.getAbsolutePath(),tmp.getAbsolutePath())
+
+                String md5=removeExtFromFileName(zip.getName())
+                File src=new File(tmp,md5)
+                File assets_dest=new File(asset_h5,md5)
+                if(!src.exists()){
+                    throw new Exception(src.getAbsolutePath()+" not exist***")
+                }
+                if(!src.renameTo(assets_dest)){
+                    throw new Exception(src.getAbsolutePath()+"rename failed")
+                }
+                println("done")
+            }
+    }
+
+}
+
+
+
+
+
+/**
+ *
+ * @param zipFile
+ * @param outFolder
+ */
+private void unZipit(String zipFile,String outFolder){
+    byte []buffer=new byte[1024];
+    try {
+        File folder=new File(outFolder);
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        ZipInputStream zis=new ZipInputStream(new FileInputStream(zipFile));
+        ZipEntry ze=zis.getNextEntry();
+        while(ze!=null){
+            String filName=ze.getName();
+            File newFile=new File(outFolder+File.separator+filName);
+            if(ze.isDirectory()){
+                newFile.mkdirs();
+                ze=zis.getNextEntry();
+                continue;
+            }
+
+            new File(newFile.getParent()).mkdirs();
+            FileOutputStream fos=new FileOutputStream(newFile);
+            int len;
+            while ((len=zis.read(buffer))>0){
+                fos.write(buffer,0,len);
+            }
+            fos.close();
+            ze=zis.getNextEntry();
+        }
+        zis.closeEntry();
+        zis.close();
+
+    }catch (IOException ex){
+        ex.printStackTrace()
+    }
+}
+private String writeTolocalH5PackgeMapFile(String content,File asset_h5){
+    File local_h5_packge_map_file=new File(asset_h5,"H5PackgeMap.json");
+    local_h5_packge_map_file.delete();
+    local_h5_packge_map_file<<content;
+
+}
+private String paseFileNameFromUrl(String url){
+    if(url.contains("?")){
+        url=url.substring(0,url.lastIndexOf("?"));
+    }
+    return url.substring(url.lastIndexOf('/')+1,url.length());
+}
+private String removeExtFromFileName(String fileName){
+    return fileName.substring(0,fileName.lastIndexOf('.'));
+}
+private String httpGetString(OkHttpClient client,String url){
+    Request req=new Request.Builder().url(url)
+    .header("Accept","application/json")
+    .build();
+    Response response=client.newCall(req).execute();
+    return response.body().string();
+}
+private void httpDownload(OkHttpClient client,String url,File dest){
+      if(dest.exists()){
+          return
+      }
+     Request req=new Request.Builder()
+    .url(url)
+    .build();
+
+    Response response=client.newCall(req).execute();
+    def out=dest.newOutputStream()
+    out <<response.body().byteStream()
+    out.flush()
+    out.close()
+}

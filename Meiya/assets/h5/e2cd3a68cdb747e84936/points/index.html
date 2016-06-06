@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="美芽,美芽美妆,app,下载,iphone,android,安卓,美小芽,美妆,化妆,彩妆,视频,教程,眼影的画法,入门,基础,化妆品,淡妆,护肤品,美颜,美容,护肤,技巧,学化妆,妆容,对比,评测,步骤,培训,工具,眼影,眼线,遮瑕">
+    <meta name="description" content="美芽 - 最大的美妆视频社区">
+    <title>我的积分</title>
+    <script src="../../e2cd3a68cdb747e84936/public/js/libs/zepto.js"></script>
+    <script src="../../e2cd3a68cdb747e84936/public/js/base.js"></script>
+    <link rel="stylesheet" href="../../e2cd3a68cdb747e84936/public/css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+
+</head>
+<body>
+    <div class="container">
+    	<header class="header">
+            <div class="bg">
+                <img src="img/index/bg-login.png" id='J_HeaderBg'>
+            </div>
+            <div class="userinfo" id='J_UserInfo'></div>
+            <nav class="nav">
+                <a class="btn btn-signin J_Webview" data-page='points/signin.html?disable_share=1'>签到</a>
+                <!-- <a class="btn btn-lottery J_Webview" data-page='points/lottery.html?disable_share=1'>抽奖</a> -->
+                <a class="btn btn-free J_Webview" data-page='trials/index.html?disable_share=1'>免费试用</a>
+                <a class="btn btn-coin J_Webview" data-page='points/rules.html?disable_share=1'>赚取积分</a>
+            </nav>
+        </header>
+        <section class="filterbar" id='J_FillerBar' style="display: none;">
+            <ul>
+                <li data-type='0' class="active">积分兑换</li>
+                <li data-type='1'>M-idol专区</li>
+            </ul>
+            <span class="curser"></span>
+        </section>
+        <section id="J_List" class="list"></section>
+    </div>
+
+    <script type="text/javascript" src="js/index.js?"></script>
+</body>
+</html>

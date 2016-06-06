@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="美芽,美芽美妆,app,下载,iphone,android,安卓,美小芽,美妆,化妆,彩妆,视频,教程,眼影的画法,入门,基础,化妆品,淡妆,护肤品,美颜,美容,护肤,技巧,学化妆,妆容,对比,评测,步骤,培训,工具,眼影,眼线,遮瑕">
+    <meta name="description" content="美芽 - 最大的美妆视频社区">
+    <title>积分规则</title>
+    <script src="../../e2cd3a68cdb747e84936/public/js/libs/zepto.js"></script>
+    <script src="../../e2cd3a68cdb747e84936/public/js/base.js"></script>
+    <link rel="stylesheet" href="../../e2cd3a68cdb747e84936/public/css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/rules.css">
+
+</head>
+<body>
+
+	<!-- <div class="head">
+        <div class="current-points">
+            <h3 id="J_CurrentPoints" class="num">-</h3>
+            <div class="tips">
+                <i class="icon-coin-white"></i>
+                <span class="text">当前积分</span>
+            </div>
+        </div>
+        <a href="javascript:;"
+        data-page="points/detail.html"
+        class="J_Webview btn-details">积分明细</a>
+    </div>
+    <div class="desc">
+        <p>美妞可以在美芽的各种互动行为中，获得积分。</p>
+        <p>小芽将不定期进行积分兑换活动，可以通过“积分兑换”里关注到小芽的活动哦</p>
+    </div> -->
+
+    <div class="list">
+        <div class="J_Webview item"
+        data-page="points/signin.html?disable_share=1">
+            <span class="title">每日签到</span>
+            <span class="tips fr wa">
+                <span id="J_IsSignin" class="text"></span>
+                <span id="J_SigninCount" class="text orange"></span>
+            </span>
+        </div>
+        <div class="J_Webview item"
+        data-page="points/mission-new.html?disable_share=1">
+            <span class="title">新手奖励</span>
+            <span id="J_MissionCount" class="tips fr"></span>
+        </div>
+    </div>
+
+   <div class="list">
+        <div class="J_Webview item"
+        data-page="points/mission-comments.html?disable_share=1#ids[]=4">
+            <span class="title">发表评论</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text orange">+1</i>
+            </span>
+        </div>
+        <div class="J_Webview item" data-page="points/mission-like.html?disable_share=1#ids[]=5">
+            <span class="title">点赞</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text orange">+1</i>
+            </span>
+        </div>
+        <div class="J_Webview item" data-page="points/mission-share.html?disable_share=1#ids[]=6">
+            <span class="title">分享</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text orange">+5</i>
+            </span>
+        </div>
+        <div class="J_Webview item" data-page="points/mission-goods.html?disable_share=1#ids[]=3">
+            <span class="title">发表妆品</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text orange">+10</i>
+            </span>
+        </div>
+        <div class="J_Webview item" data-page="points/mission-video.html?disable_share=1">
+            <span class="title">发表视频被采用</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text orange">+50</i>
+            </span>
+        </div>
+        <div class="J_Webview item" data-page="points/mission-talent.html?disable_share=1">
+            <span class="title">达人N倍积分</span>
+        </div>
+    </div>
+
+    <div class="list-tips">每天完成都可获得积分哦</div>
+
+    <div class="intro">
+        <h2>优质内容奖励</h2>
+        <div class="item">
+            <span class="title">视频 / 帖子推荐至首页</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text">+100</i>
+            </span>
+        </div>
+        <div class="item">
+            <span class="title">精华帖子</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text">+50</i>
+            </span>
+        </div>
+        <div class="item">
+            <span class="title">热门帖子</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text">+50</i>
+            </span>
+        </div>
+        <div class="item">
+            <span class="title">妆品编辑推荐</span>
+            <span class="tips fr">
+                <i class="icon-coin-grey"></i>
+                <i class="text">+20</i>
+            </span>
+        </div>
+    </div>
+
+    <a class="J_Webview cut-intro"
+    href="javascript:;"
+    data-page="points/intro-cut.html?disable_share=1">
+        <i>?</i>
+        <span class="text">积分扣除说明</span>
+    </a>
+
+    <script type="text/javascript" src="js/rules.js"></script>
+</body>
+</html>

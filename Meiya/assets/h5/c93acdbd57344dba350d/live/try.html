@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>我要试播</title>
+    <script src="../../e2cd3a68cdb747e84936/public/js/libs/zepto.js"></script>
+    <script src="../../e2cd3a68cdb747e84936/public/js/base.js"></script>
+    <link rel="stylesheet" href="../../e2cd3a68cdb747e84936/public/css/base.css">
+    <style type="text/css">
+        html, body, .container{
+            width: 100%;
+            height: 100%;
+            background: #0f021b;
+        }
+        .container{
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            min-width: 320px;
+            margin: 0 auto;
+            background: #0f021b url('img/bg-try.jpg') 0 0 no-repeat;
+            -webkit-background-size: 100% auto;
+            background-size: 100% auto;
+        }
+        .container a{
+            position: absolute;
+            top: 68%;
+            left: 50%;
+            width: 18rem;
+            height: 2.5rem;
+            margin-left: -9rem;
+            line-height: 2.5rem;
+            font-size: 1rem;
+            background: #ff5a93;
+            border-radius: 0.25rem;
+            -webkit-border-radius: 0.25rem;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="J_Webview" data-page='meiya://live-interview'>我要试播</a>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+            $('.container').delegate('.J_Webview', 'tap', function(){
+                var $this = $(this);
+                var page  = $this.data('page');
+
+                if (page) {
+                    var navi = /meiya:\/\//.test(page)
+                             ? 'navi_page_action'
+                             : 'navi_webview_action';
+
+                    MY.appBridge.callHandler(navi, page);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

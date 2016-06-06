@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="美芽,美芽美妆,app,下载,iphone,android,安卓,美小芽,美妆,化妆,彩妆,视频,教程,眼影的画法,入门,基础,化妆品,淡妆,护肤品,美颜,美容,护肤,技巧,学化妆,妆容,对比,评测,步骤,培训,工具,眼影,眼线,遮瑕">
+    <meta name="description" content="美芽 - 最大的美妆视频社区">
+    <title>订单确认</title>
+    <script src="../../e2cd3a68cdb747e84936/public/js/libs/zepto.js"></script>
+    <script src="../../e2cd3a68cdb747e84936/public/js/base.js"></script>
+    <link rel="stylesheet" href="../../e2cd3a68cdb747e84936/public/css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/pay.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="address" id='J_Address'></div>
+        <div class="goods">
+            <div class="info" id='J_GoodInfo'></div>
+            <div class="coupon" id='J_Coupon'>
+                <div class="title">优惠券</div>
+                <div class="content"></div>
+            </div>
+            <div class="order" id='J_GoodOrder'></div>
+        </div>
+        <div class="payment" id='J_Payment'>
+            <div class="title">付款方式</div>
+            <div class="content">
+                <label>
+                    <input name="pay" type="radio" data-value="1">
+                    <span><i class="icon icon-alipay"></i>支付宝</span>
+                </label>
+                <label>
+                    <input name="pay" type="radio" data-value="2">
+                    <span><i class="icon icon-wechat"></i>微信支付</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed">
+        <p>实付款: <span class="price" id='J_Price'></span></p>
+        <a class="btn btn-pay" id='J_BtnPay'>立即支付</a>
+    </div>
+
+    <script type="text/javascript" src="js/pay.js"></script>
+</body>
+</html>
